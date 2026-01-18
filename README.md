@@ -28,24 +28,8 @@ The app supports **paginated request history**, **live updates**, and **error ha
 
 ## Project Structure
 
-rest-client/
-├─ app/
-│  ├─ api/
-│  │  ├─ request/
-│  │  │  └─ route.ts          # Handles sending HTTP requests
-│  │  └─ history/
-│  │     └─ route.ts          # Fetches paginated request history
-│  └─ page.tsx                # Home page with RequestForm + History
-├─ components/
-│  ├─ RequestForm.tsx         # REST client form
-│  └─ History.tsx             # Paginated request history
-├─ lib/
-│  ├─ entities/
-│  │  └─ RequestLog.ts        # MikroORM entity for request logs
-│  └─ mikroorm.ts             # MikroORM initialization
-├─ package.json
-├─ tsconfig.json or jsconfig.json
-└─ requests.db                # SQLite database file (auto-created)
+<img width="682" height="460" alt="image" src="https://github.com/user-attachments/assets/27b166ff-832b-442b-9e1d-f5a890b9bf7d" />
+
 
 
 
@@ -152,3 +136,4 @@ Failed requests are saved in history with status: 0.
 - Lazy fetching: Only fetches visible history page, not entire table
 
 ## screenshot
+<img width="1893" height="968" alt="image" src="https://github.com/user-attachments/assets/0862dbff-9f0d-4c5c-be26-a4fc1dab274b" />
