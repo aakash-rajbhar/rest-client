@@ -28,20 +28,25 @@ The app supports **paginated request history**, **live updates**, and **error ha
 
 ## Project Structure
 
+rest-client/
 ├─ app/
-│ ├─ api/
-│ │ ├─ request/route.ts # Handles sending requests
-│ │ └─ history/route.ts # Fetches paginated request history
-│ ├─ page.tsx # Home page with RequestForm + History
+│  ├─ api/
+│  │  ├─ request/
+│  │  │  └─ route.ts          # Handles sending HTTP requests
+│  │  └─ history/
+│  │     └─ route.ts          # Fetches paginated request history
+│  └─ page.tsx                # Home page with RequestForm + History
 ├─ components/
-│ ├─ RequestForm.tsx # REST client form
-│ └─ History.tsx # Paginated request history
+│  ├─ RequestForm.tsx         # REST client form
+│  └─ History.tsx             # Paginated request history
 ├─ lib/
-│ ├─ entities/
-│ │ └─ RequestLog.ts # MikroORM entity for request logs
-│ └─ mikroorm.ts # MikroORM initialization
+│  ├─ entities/
+│  │  └─ RequestLog.ts        # MikroORM entity for request logs
+│  └─ mikroorm.ts             # MikroORM initialization
 ├─ package.json
-└─ tsconfig.json / jsconfig.json
+├─ tsconfig.json or jsconfig.json
+└─ requests.db                # SQLite database file (auto-created)
+
 
 
 
@@ -52,8 +57,8 @@ The app supports **paginated request history**, **live updates**, and **error ha
 1. **Clone the repository**
 
 ```bash
-git clone <repo-url>
-cd <project-folder>
+git clone https://github.com/aakash-rajbhar/rest-client.git
+cd rest-client
 
 npm install
 
@@ -82,54 +87,58 @@ SELECT * FROM request_log;
 
 ## Usage
 
-Send a Request
+- Send a Request
 
-Choose HTTP method (GET, POST, PUT, DELETE)
+- Choose HTTP method (GET, POST, PUT, DELETE)
 
-Enter the request URL
+- Enter the request URL
 
-Add JSON body for POST/PUT requests (optional for GET/DELETE)
+- Add JSON body for POST/PUT requests (optional for GET/DELETE)
 
-Click Send
+- Click Send
 
-Response will appear immediately below the form
+- Response will appear immediately below the form
 
-Request History
+### Request History
 
-Shows last requests in paginated view
+- Shows last requests in paginated view
 
-Automatically updates after sending a request
+- Automatically updates after sending a request
 
-Failed requests (invalid URL, network errors) show status 0 and display the error
+- Failed requests (invalid URL, network errors) show status 0 and display the error
 
-Example URLs for testing
+## Example URLs for testing
 
-GET https://jsonplaceholder.typicode.com/posts
+- GET https://jsonplaceholder.typicode.com/posts
 
-POST https://jsonplaceholder.typicode.com/posts with body:
+- POST https://jsonplaceholder.typicode.com/posts with body:
+```bash
 {
   "title": "foo",
   "body": "bar",
   "userId": 1
 }
+```
 
-
-PUT https://jsonplaceholder.typicode.com/posts/1 with body:
+- PUT https://jsonplaceholder.typicode.com/posts/1 with body:
+```bash
 {
   "id": 1,
   "title": "updated",
   "body": "updated body",
   "userId": 1
 }
+```
 
-DELETE https://jsonplaceholder.typicode.com/posts/1
-Error Handling
+- DELETE https://jsonplaceholder.typicode.com/posts/1
+
+### Error Handling
 
 Network errors or invalid URLs are caught on the server and returned to the client.
 
 Failed requests are saved in history with status: 0.
 
-Example error response:
+### Example error response:
 {
   "error": "Request failed: getaddrinfo ENOTFOUND invalid-url.com"
 }
